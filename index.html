@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183e34">
+  <title>Willow Manor · The Mystery of Mr Muffin</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <button class="brand" id="home" aria-label="Willow Manor map"><span class="brand-mark" aria-hidden="true">W</span><span>WILLOW MANOR<small>A LITTLE ENGLISH MYSTERY</small></span></button>
+    <div class="header-tools"><span id="chapter" class="chapter"></span><button id="restart-top" class="quiet" title="Start the game again">Start again</button><button id="fullscreen" class="quiet" title="Full screen">Full screen</button><button id="teacher-toggle" class="quiet" lang="ru" aria-expanded="false" aria-controls="teacher-panel">Учителю</button></div>
+  </header>
+  <main id="stage" tabindex="-1"></main>
+  <footer><span>A house full of stories. A cat to find.</span><span id="progress"></span><button class="quiet" id="map-button">Map</button></footer>
+  <aside id="teacher-panel" hidden lang="ru" aria-label="Панель преподавателя">
+    <div class="panel-top"><h2>Учителю</h2><button id="teacher-close" aria-label="Закрыть панель">Закрыть</button></div>
+    <p id="teacher-task"></p><p id="teacher-warning" class="notice"></p>
+    <div class="teacher-controls"><button data-action="reveal">Показать кота</button><button data-action="back">Назад</button><button data-action="next">Далее</button><button data-action="map">Карта</button><button id="finish-game">Завершить этап</button></div>
+    <label>Вариант урока<select id="group"><option value="standard">Основная группа · A1–A2</option><option value="easy">Начальная группа · there is / there are</option></select></label>
+    <label class="check"><input type="checkbox" id="animations"> Короткие анимации</label>
+    <details><summary>Подготовка и материалы</summary><p>Кухни A и B выдайте командам отдельно. Не показывайте листы соперникам. Ключи и чтение на общий экран не выводятся.</p><p>Аудио: прослушайте до урока и проверьте соответствие листу и уровню группы. При необходимости откройте запись отдельно.</p><a id="audio-download" href="assets/audio/listening.mp3" target="_blank" rel="noopener">Открыть аудио отдельно</a><p>Не все печатные листы приложены. Список находится в README.md.</p></details>
+    <details><summary>Видео про Mr Muffin</summary><p>Добавьте видео позже. Файл остаётся на вашем устройстве и никуда не загружается. После перезагрузки выберите его повторно.</p><label>Локальное видео<input id="video-file" type="file" accept="video/*"></label><button id="remove-video">Убрать выбранное видео</button><label>Необязательная ссылка<input id="video-link" type="url" placeholder="https://…"></label><button id="save-link">Сохранить ссылку</button><button id="open-link">Открыть ссылку</button><p id="video-status" role="status"></p></details>
+    <p id="storage-status" class="notice" role="status"></p><button id="restart" class="danger">Начать сначала</button>
+    <p class="key-help">Клавиши: ← назад, → далее, R показать кота, M карта, T панель, Esc закрыть. Переходы всегда доступны учителю.</p>
+  </aside>
+  <dialog id="resume-dialog" lang="ru"><h2>Продолжить расследование?</h2><p>На этом устройстве сохранился предыдущий урок.</p><div class="actions"><button id="resume-yes">Продолжить</button><button id="resume-no" class="secondary">Открыть начало</button></div><p>Открытие начала сохраняет найденных котов. Полный сброс находится в панели «Учителю».</p></dialog>
+  <dialog id="reset-dialog" lang="ru"><h2>Начать сначала?</h2><p>Текущий этап, открытые коты и отметки игры будут очищены. Настройки урока останутся.</p><div class="actions"><button id="reset-confirm" class="danger">Очистить прогресс</button><button id="reset-cancel" class="secondary">Отмена</button></div></dialog>
+  <dialog id="video-dialog"><button id="video-close" class="secondary">Close</button><video id="final-video" controls playsinline></video></dialog>
+  <dialog id="mark-dialog" lang="ru"><h2>Подтвердить отличие</h2><p>Отметьте его сначала на Picture A, затем на Picture B. Подтверждает преподаватель.</p><label>Предложение после подтверждения<select id="difference-label"></select></label><label>Своё предложение на английском (необязательно)<input id="difference-custom" maxlength="220" placeholder="Picture A: … Picture B: …"></label><div class="actions"><button id="mark-confirm">Засчитать</button><button id="mark-cancel" class="secondary">Отмена</button></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
